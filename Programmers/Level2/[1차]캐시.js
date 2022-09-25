@@ -16,13 +16,14 @@ function solution(cacheSize, cities) {
     }
     return answer;
 }
-/* 테케11,16,19,20 실패
+/* 테케11,16,19,20 실패 -> 해결
 function solution(cacheSize, cities) {
     cities = cities.join(',').toLowerCase().split(","); //전부 소문자로
     var answer = 0;
     let arr = [];
     let i=0;
     let count = cities.length;
+    let cnt = 0;    //cacheSize가 가득차기 전까지 cities를 어디까지 방문하는지.
     if(cacheSize===0){
         return cities.length *5;
     }
@@ -36,14 +37,17 @@ function solution(cacheSize, cities) {
             arr.push(cities[i]);
             answer+=5;
             i+=1;
+            cnt+=1;
         }else{  //hit
             arr.splice(idx,1);
             arr.push(cities[i]);
             answer+=1;
+            i+=1;
+            cnt+=1;
         }
         count-=1;
     }
-    for(let j=cacheSize;j<cities.length;j++){   
+    for(let j=cnt;j<cities.length;j++){   
         //없으면 맨 앞 삭제 후 맨 뒤에 추가, 있으면 삭제 후 맨뒤에 다시 추가
         let idx = arr.findIndex(el=>el===cities[j]);
         if(idx === -1){ //miss
@@ -59,7 +63,11 @@ function solution(cacheSize, cities) {
     return answer;
 }
 */
-
+/* 테스트케이스 11,16,19,20 안됐는데 그 이유
+["a", "a", "a", "b", "b", "b", "c", "c", "c"] // 답: 21 와 같을 경우
+아래 for문에서 cacheSize에서부터 시작하게 되었는데
+cacheSize는 2이고, while문을 반복한 후에 현재 cities는 2번째 b부터 시작해야하지만 cacheSize인 2 즉, 3번째 a부터 시작해 오류가 발생하였다. 
+*/
 
 /* 다른 사람 풀이 
 function solution(cacheSize, cities) {
