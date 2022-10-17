@@ -12,3 +12,13 @@ function solution(s) {
     }
     return answer.slice(1);
 }
+
+/* 다른 사람 풀이 
+function toWeirdCase(s){
+  return s.toUpperCase().replace(/(\w)(\w)/g, function(a){return a[0].toUpperCase()+a[1].toLowerCase();})
+}
+
+function toWeirdCase(s){
+  return s.split(' ').map(i => i.split('').map((j, key) => key % 2 === 0 ? j.toUpperCase() : j).join('')).join(' ')
+}
+*/
