@@ -1,0 +1,24 @@
+function solution(n, t, m, p) {
+    let tmp = '';
+    let answer = '';
+    for(let i=0;i<=t*m;i++){
+        tmp+=i.toString(n);
+    }
+    tmp = tmp.toUpperCase().split("");
+    let count = p-1;
+    for(let i=0;i<t;i++){
+        answer+=tmp[count+m*i];
+    }
+    return answer;
+}
+/* 다른 사람 풀이 
+function solution(n, t, m, p) {
+    var tubeT = Array.apply(null,Array(t)).map((a,i)=>i*m+p-1);
+    var line = '';
+    var max = m*t + p;
+    for (var i =0;line.length <= max; i++) {
+        line += i.toString(n);
+    }
+    return tubeT.map(a=>line[a]).join('').toUpperCase();
+}
+*/
